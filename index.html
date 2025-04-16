@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>System Hack Simulation</title>
+    <style>
+      body {
+        background-color: #001f00;
+        color: #00ff00;
+        font-family: "Courier New", Courier, monospace;
+        padding: 20px;
+        font-size: 18px;
+      }
+      .line {
+        margin: 10px 0;
+      }
+      .dots::after {
+        content: ".";
+        animation: blink 1s steps(1) infinite;
+      }
+
+      @keyframes blink {
+        0% {
+          content: ".";
+        }
+        25% {
+          content: "..";
+        }
+        50% {
+          content: "...";
+        }
+        75% {
+          content: "..";
+        }
+        100% {
+          content: ".";
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <div id="terminal"></div>
+
+    <script>
+      const terminal = document.getElementById("terminal");
+
+      const lines = [
+        "Initializing hack tool",
+        "Bypassing firewall",
+        "Accessing confidential files",
+        "Sending all passwords to server",
+        "Downloading saved images",
+        "Send INR 10 on - 7987732171@ybl to stop the Breach",
+      ];
+
+      let currentLine = 0;
+      let previousLineElement = null;
+
+      function typeNextLine() {
+        if (currentLine >= lines.length) return;
+
+        const line = document.createElement("div");
+        line.className = "line dots";
+        line.textContent = lines[currentLine];
+
+        // Remove dots class from previous line
+        if (previousLineElement) {
+          previousLineElement.classList.remove("dots");
+        }
+
+        terminal.appendChild(line);
+        previousLineElement = line;
+        currentLine++;
+
+        // Scroll to bottom
+        window.scrollTo(0, document.body.scrollHeight);
+
+        const delay = Math.floor(Math.random() * 3 + 1) * 1000;
+        setTimeout(typeNextLine, delay);
+      }
+
+      typeNextLine();
+    </script>
+  </body>
+</html>
